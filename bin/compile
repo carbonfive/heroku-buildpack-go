@@ -180,7 +180,7 @@ touch $build/.npmrc
 npm install --unsafe-perm --userconfig $build/.npmrc 2>&1
 
 echo "-----> precompiling assets ..."
-./node_modules/gulp/bin/gulp assets:copy 2>&1
+./node_modules/gulp/bin/gulp.js assets:copy 2>&1
 
 
 
