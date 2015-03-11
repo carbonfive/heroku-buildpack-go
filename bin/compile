@@ -173,6 +173,7 @@ PATH=$heroku_dir/node/bin:$PATH
 #info "Downloading and installing npm 2.7.0 (replacing version `npm --version`)..."
 #npm install --unsafe-perm --quiet -g npm@2.7.0 2>&1 >/dev/null | indent
 
-npm install --unsafe-perm --quiet --userconfig $build_dir/.npmrc 2>&1
+echo "-----> Installing npm modules ..."
+npm install --unsafe-perm --quiet --userconfig $build/.npmrc 2>&1
 
 
