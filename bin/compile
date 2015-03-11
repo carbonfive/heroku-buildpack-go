@@ -153,9 +153,8 @@ else
     go get -tags heroku ./...
 fi
 
-heroku_dir=$build_dir/.heroku
+heroku_dir=$build/.heroku
 rm -rf $heroku_dir
-mkdir $heroku_dir
 mkdir -p $heroku_dir/node
 
 mkdir -p $build/.profile.d
