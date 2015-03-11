@@ -175,6 +175,6 @@ PATH=$heroku_dir/node/bin:$PATH
 
 echo "-----> Installing npm modules ..."
 touch $build/.npmrc
-npm install --unsafe-perm --quiet --userconfig $build/.npmrc 2>&1
+npm install --unsafe-perm --userconfig $build/.npmrc 2>&1
 
 
