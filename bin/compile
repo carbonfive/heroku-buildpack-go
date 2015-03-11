@@ -38,6 +38,7 @@ urlfor() {
 mkdir -p "$1" "$2"
 build=$(cd "$1/" && pwd)
 cache=$(cd "$2/" && pwd)
+approot=$(cd "$3/" && pwd)
 buildpack=$(dirname $(dirname $0))
 arch=$(uname -m|tr A-Z a-z)
 if test $arch = x86_64
@@ -177,5 +178,10 @@ echo "-----> Installing npm modules ..."
 cd $build
 touch $build/.npmrc
 npm install --unsafe-perm --userconfig $build/.npmrc 2>&1
+
+echo "-----> precompiling assets ..."
+./node_modules/gulp/bin/gulp assets:copy 2>&1
+
+
 
 
