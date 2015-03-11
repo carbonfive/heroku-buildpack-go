@@ -153,7 +153,10 @@ else
     go get -tags heroku ./...
 fi
 
-rm -rf $build/.heroku
+heroku_dir=$build_dir/.heroku
+rm -rf $heroku_dir
+mkdir $heroku_dir
+mkdir -p $heroku_dir/node
 
 mkdir -p $build/.profile.d
 echo 'PATH=$PATH:$HOME/bin' > $build/.profile.d/go.sh
@@ -164,7 +167,7 @@ node_url="http://s3pository.heroku.com/node/v0.12.0/node-v0.12.0-linux-x64.tar.g
 curl $node_url -s -o - | tar xzf - -C /tmp
 
 # Move node (and npm) into .heroku/node and make them executable
-mv /tmp/node-v$node_engine-linux-x64/* $heroku_dir/node
+mv /tmp/node-v0.12.0-linux-x64/* $heroku_dir/node
 chmod +x $heroku_dir/node/bin/*
 PATH=$heroku_dir/node/bin:$PATH
 
