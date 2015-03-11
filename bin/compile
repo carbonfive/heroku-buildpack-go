@@ -157,3 +157,20 @@ rm -rf $build/.heroku
 
 mkdir -p $build/.profile.d
 echo 'PATH=$PATH:$HOME/bin' > $build/.profile.d/go.sh
+
+# Download node from Heroku's S3 mirror of nodejs.org/dist
+info "Downloading and installing node $node_engine..."
+node_url="http://s3pository.heroku.com/node/v0.12.0/node-v0.12.0-linux-x64.tar.gz"
+curl $node_url -s -o - | tar xzf - -C /tmp
+
+# Move node (and npm) into .heroku/node and make them executable
+mv /tmp/node-v$node_engine-linux-x64/* $heroku_dir/node
+chmod +x $heroku_dir/node/bin/*
+PATH=$heroku_dir/node/bin:$PATH
+
+#info "Downloading and installing npm 2.7.0 (replacing version `npm --version`)..."
+#npm install --unsafe-perm --quiet -g npm@2.7.0 2>&1 >/dev/null | indent
+
+npm install --unsafe-perm --quiet --userconfig $build_dir/.npmrc 2>&1 | indent
+
+
